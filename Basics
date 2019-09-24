@@ -1,0 +1,115 @@
+>SQL is case-insensative
+>We can write comments in sql by using --(double hyphen)
+>SQL is the programming language for relational databases such as MySQL, Oracle etc. and other non-relational databases(NoSQL) databases like MongoDB, DynamoDB etc. do not uses SQL.
+>There is an ISO Standard for SQL
+
+What is Relational Database?
+It means the data is stored as well as retrieved in the form of relations(tables).
+Eg:-
+ROLL_NO	NAME	ADDRESS	PHONE	AGE
+1	RAM	DELHI	9455123451	18
+2	RAMESH	GURGAON	9652431543	18
+3	SUJIT	ROHTAK	9156253131	20
+4	SURESH	DELHI	9156768971	18
+
+Attributes:- These are the properties which defines relations. Eg:- Name, Address etc.
+Tuple:- Each row in the relations is known as tuple. Above contains 4.
+ The above contains 4. The one of which
+1	RAM	DELHI	9455123451	18
+
+Degree:- The no. of attributes in the relations is known as Degree of the realtion. The above contains 5
+Cardinality :- The number of tuples in a relation is known as cardinality.
+Column :-
+
+		-----------------------------
+The queries to deal with in relational database can be categorized as :-
+Data Definition Language :- It is used to define the structure of the database. For eg:- CREATE TABLE, ADD COLUMN, DROP COLUMN etc.
+Data Manipulation Language :- It is used to manipulate data in relations. eg:- INSERT, DELETE, UPDATE and so on.
+Data Query Language :- It is used to extract data from relations. Eg :- 
+CASE 1:-
+SELECT ROLL_NO, NAME FROM STUDENT;
+ROLL_NO	NAME
+1	RAM
+2	RAMESH
+3	SUJIT
+4	SURESH
+
+CASE 2:-
+SELECT ROLL_NO, NAME FROM STUDENT WHERE ROLL_NO>2;
+ROLL_NO	NAME
+3	SUJIT
+4	SURESH
+
+CASE 3:-
+SELECT * FROM STUDENT WHERE ROLL_NO>2;
+ROLL_NO	NAME	ADDRESS	PHONE	AGE
+3	SUJIT	ROHTAK	9156253131	20
+4	SURESH	DELHI	9156768971	18
+
+CASE 4:-
+SELECT * FROM STUDENT ORDER BY AGE; equivalents to ORDER BY AGE ASC.
+
+ROLL_NO	NAME	ADDRESS	PHONE	AGE
+1	RAM	DELHI	9455123451	18
+2	RAMESH	GURGAON	9652431543	18
+4	SURESH	DELHI	9156768971	18
+3	SUJIT	ROHTAK	9156253131	20
+
+For decending order :- SELECT * FROM STUDENT ORDER BY AGE DESC;
+
+CASE 5:-
+SELECT DISTINCT ADDRESS FROM STUDENT;
+ADDRESS
+DELHI
+GURGAON
+ROHTAK
+		-----------------------------------
+
+AGGREGATIONS FUNCTIONS-
+They are used to perform mathematical operations on data values of relations. Some common aggregation functions are :-
+
+COUNT:- This is used to count the number of rows in a realtion.
+SELECT COUNT (PHONE) FROM STUDENT;
+COUNT(PHONE)
+4
+
+SUM :- SELECT SUM(AGE) FROM STUDENT;
+SUM(AGE)
+74
+
+IN THE SAME WAY MIN, MAX & AVG can be used. All aggregations functions returns only one row.
+
+		-------------------------------
+
+GROUP BY:- 	Group by is used to group the tuples of a relation based on attributes or group of attribute. It is always combined with aggregation function which is computed on group.
+Eg:-
+SELECT ADDRESS, SUM(AGE) FROM STUDENT GROUP BY (ADDRESS);
+ADDRESS	SUM(AGE)
+DELHI	36
+GURGAON	18
+ROHTAK	20
+
+The above query will result in an error. So we use aggregation functions for ROLL_NO to sort this.
+
+SELECT ROLL_NO, ADDRESS, SUM(AGE) FROM STUDENT GROUP BY (ADDRESS);
+--------------------------------------------------------------------------------------------------------------------------
+
+		SQL DATATYPES
+		-------------
+1. Binary Datatypes:-
+	i)binary:- max. length of 8000 bytes(fixed length binary data)
+	ii)varbinary:- max. length of 8000 bytes(variable length binary data)
+	iii)varbinary(max):- of 231 bytes(variable length binary data)
+	iv)image:- variable length binary data
+
+2. Exact
+There are nine subtypes.
+	1. bigint
+	2. int
+	3. smallint
+	4. tinyint
+	5. bit
+	6. decimal 
+	7. numeric
+	8. money
+	9. smallmoney
